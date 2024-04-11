@@ -8,15 +8,15 @@
  });
 
  app.get('/teste', (req, res) => {
-   
+   mensagemRecebida = "";
    const {mensagem} = req.body;
-   const mensagemRecebida = mensagem;
+   let mensagemRecebida = mensagem;
    
     if(mensagemRecebida != null){
-      res.json({message : mensagemRecebida.data});
+      res.json({message : mensagemRecebida});
 
     }else{
-      res.json({message: mensagemRecebida.data});
+      res.json({message: mensagemRecebida});
     }
  });
 
