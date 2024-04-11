@@ -8,7 +8,8 @@
  });
 
  app.get('/teste', (req, res) => {
-   const {mensagem} = req.body;
+   let mensagem = "";
+   ({mensagem} = req.body);
    
     if(mensagem != null){
       res.json({message : mensagem});
