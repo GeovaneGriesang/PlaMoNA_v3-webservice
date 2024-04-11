@@ -15,7 +15,7 @@
       res.json({message : mensagem});
 
     }else{
-      res.json({message: mensagem});
+      res.json({message: "mensagem não recebida"});
     }
  });
 
