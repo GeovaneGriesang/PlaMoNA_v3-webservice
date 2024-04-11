@@ -11,8 +11,8 @@
    const mensagem = req.body;
    let mensagemRecebida = mensagem;
    
-    if(mensagem != null){
-      res.json({message : mensagem.data});
+    if(mensagem == ""){
+      res.json({message : mensagem});
 
     }else{
       res.json({message: "mensagem não recebida"});
