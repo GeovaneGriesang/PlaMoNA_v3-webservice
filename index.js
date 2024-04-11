@@ -7,13 +7,13 @@
  });
 
  app.get('/teste', (req, res) => {
-   const mensagem = req.body;
+   const {mensagem} = req.body;
    
     if(mensagem != null){
       res.json({message : mensagem});
 
     }else{
-      res.json({message: "Rolou mas não deu em nada: ", mensagem});
+      res.json({message: "Rolou mas não deu em nada: "});
     }
  });
 
