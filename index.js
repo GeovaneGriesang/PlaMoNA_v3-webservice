@@ -12,10 +12,10 @@
    const mensagemRecebida = mensagem;
    
     if(mensagemRecebida == ""){
-      res.json({message : req});
+      res.json(req.json());
 
     }else{
-      res.json({message: req});
+      res.json(req.json());
     }
  });
 
