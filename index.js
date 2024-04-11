@@ -10,9 +10,10 @@
  app.get('/teste', (req, res) => {
    
    const {mensagem} = req.body;
+   const mensagemRecebida = mensagem;
    
-    if(mensagem != null){
-      res.json({message : mensagem});
+    if(mensagemRecebida != null){
+      res.json({message : mensagemRecebida});
 
     }else{
       res.json({message: "Rolou mas não deu em nada: "});
