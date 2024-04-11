@@ -12,7 +12,7 @@
    let mensagemRecebida = mensagem;
    
     if(mensagem != null){
-      res.json({message : mensagem});
+      res.json({message : mensagem.data});
 
     }else{
       res.json({message: "mensagem não recebida"});
