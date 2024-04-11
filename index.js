@@ -8,7 +8,7 @@
  });
 
  app.get('/teste', (req, res) => {
-   const {mensagem} = req.body;
+   const mensagem = req.body;
    let mensagemRecebida = mensagem;
    
     if(mensagem != null){
