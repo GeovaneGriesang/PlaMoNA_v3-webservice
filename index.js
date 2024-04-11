@@ -12,11 +12,11 @@
    const {mensagem} = req.body;
    let mensagemRecebida = mensagem;
    
-    if(mensagemRecebida != null){
-      res.json({message : mensagemRecebida});
+    if(mensagem != null){
+      res.json({message : mensagem});
 
     }else{
-      res.json({message: mensagemRecebida});
+      res.json({message: mensagem});
     }
  });
 
