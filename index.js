@@ -9,10 +9,10 @@
 
  app.get('/teste', (req, res) => {
    const mensagem = req.body;
-   let mensagemRecebida = mensagem;
+   const mensagemRecebida = mensagem;
    
-    if(mensagem == ""){
-      res.json({message : mensagem});
+    if(mensagemRecebida == ""){
+      res.json({message : mensagemRecebida});
 
     }else{
       res.json({message: "mensagem não recebida"});
