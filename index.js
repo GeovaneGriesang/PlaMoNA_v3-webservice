@@ -7,8 +7,12 @@
  });
 
  app.get('/teste', (req, res) => {
-    return res.json({message: 'Num é que da certo?'});
+    const {mensagem} = req.body;
+    const mensagemRecebida = mensagem;
+    res.json({message : mensagemRecebida});
  });
+
+ app.get
 
  app.listen(port, ()=>{
     console.log('Servidor iniciado com Sucesso');
