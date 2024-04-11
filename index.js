@@ -11,7 +11,7 @@
    const {mensagem} = req.body;
    let mensagemRecebida = mensagem;
    
-    if(mensagem.data != null){
+    if(mensagem != null){
       res.json({message : mensagem});
 
     }else{
@@ -19,7 +19,6 @@
     }
  });
 
- app.get
 
  app.listen(port, ()=>{
     console.log('Servidor iniciado com Sucesso');
