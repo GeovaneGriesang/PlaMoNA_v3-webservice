@@ -6,9 +6,9 @@
     return res.json({message: 'Servidor Online'});
  });
 
- app.get('/teste', (req, res)){
+ app.get('/teste', (req, res){
     return res.json({message: 'Num é que da certo?'});
- }
+ });
 
  app.listen(port, ()=>{
     console.log('Servidor iniciado com Sucesso');
