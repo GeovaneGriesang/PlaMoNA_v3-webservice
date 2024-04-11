@@ -9,7 +9,7 @@
  app.get('/teste', (req, res) => {
     const {mensagem} = req.body;
     const mensagemRecebida = mensagem;
-    res.json({message : mensagemRecebida});
+    res.json({message : "Rolou"});
  });
 
  app.get
