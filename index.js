@@ -13,10 +13,10 @@
    const mensagemRecebida = mensagem;
    
     if(mensagemRecebida != null){
-      res.json({message : mensagemRecebida});
+      res.json({message : mensagemRecebida.data});
 
     }else{
-      res.json({message: mensagemRecebida});
+      res.json({message: mensagemRecebida.data});
     }
  });
 
