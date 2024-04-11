@@ -16,7 +16,7 @@
       res.json({message : mensagemRecebida});
 
     }else{
-      res.json({message: "Rolou mas não deu em nada: ", mensagemRecebida: mensagemRecebida});
+      res.json({message: mensagemRecebida});
     }
  });
 
