@@ -13,7 +13,8 @@
    const mensagemRecebida = mensagem;
    
     if(mensagemRecebida != null){
-      res.json(mensagemRecebida);
+      const mensagemSeparada = splitString(mensagemRecebida, ",");
+      res.json(mensagemSeparada);
 
     }else{
       res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
