@@ -8,10 +8,11 @@
  });
 
  app.post('/teste', (req, res) => {
+  
    const mensagem = req.body;
    const mensagemRecebida = mensagem;
    
-    if(mensagemRecebida == ""){
+    if(mensagemRecebida != null){
       res.json(mensagemRecebida);
 
     }else{
