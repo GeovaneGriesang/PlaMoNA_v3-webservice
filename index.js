@@ -7,7 +7,7 @@
     return res.json({message: 'Servidor Online'});
  });
 
- app.post('/teste', (req, res) => {
+ app.get('/teste', (req, res) => {
   
    const mensagem = req.body;
    const mensagemRecebida = mensagem;
