@@ -12,10 +12,10 @@
    const mensagemRecebida = mensagem;
    
     if(mensagemRecebida == ""){
-      res.json(req.json());
+      res.json(mensagemRecebida);
 
     }else{
-      res.json(req.json());
+      res.json("Conexão:Feita\nMensagem não entregue");
     }
  });
 
