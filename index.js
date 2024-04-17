@@ -1,7 +1,7 @@
  const express = require('express');
  const app = express();
  app.use(express.json());
- const port = 3333;
+ const port = 80;
 
  app.get('/', (req, res) => {
     return res.json({message: 'Servidor Online'});
