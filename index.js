@@ -13,8 +13,25 @@
    const mensagemRecebida = mensagem;
    
     if(mensagemRecebida != null){
+      //sequencia prevista: 
+      //idEquipamento,ano,mes,dia,hora,minuto,segundo,intensidadeSinalGSM,tensaoBateria,tensaoModem
+      //nivelAgua,chuvaAcumulada,verificacaoIntegridade
       const mensagemSeparada = mensagemRecebida.split(",");
-      res.json(mensagemSeparada);
+      const idEquipamento = mensagemSeparada[0];
+      const ano = mensagemSeparada[1];
+      const mes = mensagemSeparada[2];
+      const dia = mensagemSeparada[3];
+      const hora = mensagemSeparada[4];
+      const minuto = mensagemSeparada[5];
+      const segundo = mensagemSeparada[6];
+      const intensidadeSinalGSM = mensagemSeparada[7];
+      const tensaoBateria = mensagemSeparada[8];
+      const tensaoModem = mensagemSeparada[9];
+      const nivelAgua = mensagemSeparada[10];
+      const chuvaAcumulada = mensagemSeparada[11];
+      const verificacaoIntegridade = mensagemSeparada[12];
+
+      res.json({idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, chuvaAcumulada, verificacaoIntegridade});
 
     }else{
       res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
