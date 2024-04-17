@@ -15,7 +15,7 @@
       res.json(mensagemRecebida);
 
     }else{
-      res.json("Conexão:Feita\nMensagem não entregue");
+      res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
     }
  });
 
