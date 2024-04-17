@@ -13,7 +13,7 @@
    const mensagemRecebida = mensagem;
    
     if(mensagemRecebida != null){
-      const mensagemSeparada = splitString(mensagemRecebida, ",");
+      const mensagemSeparada = mensagemRecebida.split(",");
       res.json(mensagemSeparada);
 
     }else{
