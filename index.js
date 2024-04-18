@@ -16,7 +16,7 @@
       //sequencia prevista: 
       //idEquipamento,ano,mes,dia,hora,minuto,segundo,intensidadeSinalGSM,tensaoBateria,tensaoModem
       //nivelAgua,chuvaAcumulada,verificacaoIntegridade
-      const mensagemSeparada = mensagemRecebida.split(",");
+      const mensagemSeparada = mensagemRecebida.split(";");
       const idEquipamento = mensagemSeparada[0];
       const ano = mensagemSeparada[1];
       const mes = mensagemSeparada[2];
