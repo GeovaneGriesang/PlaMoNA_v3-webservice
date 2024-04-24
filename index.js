@@ -1,9 +1,15 @@
  const express = require('express');
  const app = express();
- const pool = require('./connection');
  app.use(express.json());
  import mysql from "mysql2";
  const port = 3333;
+ const pool = mysql.createPool({
+  host: 'databaseteste.c9yaqus04iqo.us-east-1.rds.amazonaws.com',
+  user: 'admin',
+  password: 'pla123mo123na123',
+  database: 'geovaneg_plamona'
+}).promise();
+
 
  app.get('/', (req, res) => {
     return res.json({message: 'Servidor Online'});
