@@ -2,6 +2,7 @@
  const app = express();
  const pool = require('./connection');
  app.use(express.json());
+ import mysql from "mysql2";
  const port = 3333;
 
  app.get('/', (req, res) => {
