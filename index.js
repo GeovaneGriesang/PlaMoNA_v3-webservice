@@ -1,5 +1,6 @@
  const express = require('express');
  const app = express();
+ const pool = require('./connection');
  app.use(express.json());
  const port = 3333;
 
@@ -7,7 +8,7 @@
     return res.json({message: 'Servidor Online'});
  });
 
- app.post('/teste', (req, res) => {
+ app.post('/teste', async (req, res) => {
   
    const {mensagem} = req.body;
    const mensagemRecebida = mensagem;
@@ -31,8 +32,11 @@
       const chuvaAcumulada = mensagemSeparada[11];
       const verificacaoIntegridade = mensagemSeparada[12];
 
-      res.json({idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, chuvaAcumulada, verificacaoIntegridade});
 
+      const query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+      const result = await pool.query(query, [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, chuvaAcumulada, verificacaoIntegridade]);
+      
+      return res.json(result);
     }else{
       res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
     }
@@ -42,3 +46,5 @@
  app.listen(port, ()=>{
     console.log('Servidor iniciado com Sucesso');
  });
+
+ 
