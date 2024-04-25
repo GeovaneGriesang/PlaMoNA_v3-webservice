@@ -35,7 +35,7 @@
 
 
       let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
-      values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, chuvaAcumulada, verificacaoIntegridade];
+      values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, tensaoBateria, tensaoModem, nivelAgua, chuvaAcumulada, verificacaoIntegridade];
       connection.query(query, values, (err, result) =>{
         if(err){
           res.json({message: "Erro ao consultar ao banco"});
