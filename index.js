@@ -13,7 +13,7 @@
     var url = location.search.slice(1);
     mensagem = url.split('=');
     mensagemRecebida = mensagem[1];
-
+    res.json(mensagem);
 
     if(mensagemRecebida != null){
       //sequencia prevista: 
