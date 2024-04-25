@@ -9,7 +9,7 @@
     return res.json({message: 'Servidor Online'});
  });
 
- app.post('/teste', async (req, res) => {
+ app.get('/teste', async (req, res) => {
   
    const {mensagem} = req.body;
    const mensagemRecebida = mensagem;
