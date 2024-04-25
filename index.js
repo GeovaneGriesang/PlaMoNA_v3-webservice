@@ -2,7 +2,7 @@
  const app = express();
  app.use(express.json());
  const port = 3333;
- const pool = require('./connection');
+ const connection = require('./database');
 
 
  app.get('/', (req, res) => {
@@ -34,9 +34,16 @@
       const verificacaoIntegridade = mensagemSeparada[12];
 
 
-      const query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
-      const result = await pool.query(query, [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, chuvaAcumulada, verificacaoIntegridade]);
-      
+      let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+      values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, chuvaAcumulada, verificacaoIntegridade];
+      connection.query(query, values, (err, result) =>{
+        if(err){
+          res.json({message: "Erro ao consultar ao banco"});
+
+        }else{
+          res.json({message: result});
+        }
+      });
       return res.json(result);
     }else{
       res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
