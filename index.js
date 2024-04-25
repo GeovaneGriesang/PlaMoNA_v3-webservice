@@ -26,16 +26,17 @@
       const hora = mensagemSeparada[4];
       const minuto = mensagemSeparada[5];
       const segundo = mensagemSeparada[6];
-      const intensidadeSinalGSM = mensagemSeparada[7];
-      const tensaoBateria = mensagemSeparada[8];
-      const tensaoModem = mensagemSeparada[9];
-      const nivelAgua = mensagemSeparada[10];
+      const tensaoBateria = mensagemSeparada[7];
+      const tensaoModem = mensagemSeparada[8];
+      const nivelAgua = mensagemSeparada[9];
+      const temperaturaAmbiente = mensagemSeparada[10];
       const chuvaAcumulada = mensagemSeparada[11];
       const verificacaoIntegridade = mensagemSeparada[12];
 
 
       let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
-      values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, tensaoBateria, tensaoModem, nivelAgua, chuvaAcumulada, verificacaoIntegridade];
+      values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, tensaoBateria, tensaoModem, 
+        nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade];
       connection.query(query, values, (err, result) =>{
         if(err){
           res.json({message: "Erro ao consultar ao banco"});
