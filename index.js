@@ -44,7 +44,6 @@
           res.json({message: result});
         }
       });
-      return res.json(result);
     }else{
       res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
     }
