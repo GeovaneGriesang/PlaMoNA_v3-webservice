@@ -9,17 +9,16 @@
     return res.json({message: 'Servidor Online'});
  });
 
- app.get('/teste', async (req, res) => {
-    var url = location.search.slice(1);
-    mensagem = url.split('=');
-    mensagemRecebida = mensagem[1];
-    res.json(mensagem);
+ app.get('/testeGet:Mensagem', async (req, res) => {
+    const mensagemRecebida = req.params;
+    console.log(mensagemRecebida);
+    
 
     if(mensagemRecebida != null){
       //sequencia prevista: 
       //idEquipamento,ano,mes,dia,hora,minuto,segundo,intensidadeSinalGSM,tensaoBateria,tensaoModem
       //nivelAgua,chuvaAcumulada,verificacaoIntegridade
-      const mensagemSeparada = mensagemRecebida.split(";");
+      const mensagemSeparada = mensagemRecebida.Mensagem.split(";");
       const idEquipamento = mensagemSeparada[0];
       const ano = mensagemSeparada[1];
       const mes = mensagemSeparada[2];
