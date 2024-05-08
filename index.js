@@ -9,6 +9,10 @@
     return res.json({message: 'Servidor Online'});
  });
 
+
+ //url:ipv4:3333/testeGetString
+ //para usar a chave podemos separar por &, exemplo de url:ipv4:3333/testeGetKeyDeSegurança&String
+ //aí usamos um split("&") para separar a key da string e testamos se a key está certa
  app.get('/testeGet:Mensagem', async (req, res) => {
     const mensagemRecebida = req.params;
     console.log(mensagemRecebida);
@@ -93,6 +97,19 @@
  });
 
 
+ app.get('/consulta', async (req, res) => {
+  let query = "SELECT * FROM medicoes ORDER BY idMedicoes DESC LIMIT 10;"
+  connection.query(query, (err, result) =>{
+    if(err){
+      res.json({message: "Erro ao consultar ao banco"});
+    }else{
+      
+      res.json(result);
+    }
+  });
+
+
+ });
  app.listen(port, ()=>{
     console.log('Servidor iniciado com Sucesso');
  });
