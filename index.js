@@ -21,7 +21,7 @@
     if(mensagemRecebida != null){
       //sequencia prevista: 
       //idEquipamento,ano,mes,dia,hora,minuto,segundo,intensidadeSinalGSM,tensaoBateria,tensaoModem
-      //nivelAgua,chuvaAcumulada,verificacaoIntegridade
+      //nivelAgua,chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade
       const mensagemSeparada = mensagemRecebida.Mensagem.split(";");
       const idEquipamento = mensagemSeparada[0];
       const ano = mensagemSeparada[1];
@@ -36,12 +36,16 @@
       const nivelAgua = mensagemSeparada[10];
       const temperaturaAmbiente = mensagemSeparada[11];
       const chuvaAcumulada = mensagemSeparada[12];
-      const verificacaoIntegridade = mensagemSeparada[13];
+      const umidade = mensagemSeparada[13];
+      const correnteBateria = mensagemSeparada[14];
+      const correnteInput = mensagemSeparada[15];
+      const verificacaoIntegridade = mensagemSeparada[16];
 
 
-      let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+      let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
       values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, 
-        nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade];
+        nivelAgua, temperaturaAmbiente, chuvaAcumulada, 
+        umidade, correnteBateria, correnteInput, verificacaoIntegridade];
       connection.query(query, values, (err, result) =>{
         if(err){
           res.json({message: "Erro ao consultar ao banco"});
@@ -72,19 +76,22 @@
       const dia = mensagemSeparada[3];
       const hora = mensagemSeparada[4];
       const minuto = mensagemSeparada[5];
-      const segundo = mensagemSeparada[6];
+      const segundo = mensagemSeparada[6]; 
       const intensidadeSinalGSM = mensagemSeparada[7];
       const tensaoBateria = mensagemSeparada[8];
       const tensaoModem = mensagemSeparada[9];
       const nivelAgua = mensagemSeparada[10];
       const temperaturaAmbiente = mensagemSeparada[11];
       const chuvaAcumulada = mensagemSeparada[12];
-      const verificacaoIntegridade = mensagemSeparada[13];
+      const umidade = mensagemSeparada[13];
+      const correnteBateria = mensagemSeparada[14];
+      const correnteInput = mensagemSeparada[15];
+      const verificacaoIntegridade = mensagemSeparada[16];
 
-
-      let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+      let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
       values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, 
-        nivelAgua, temperaturaAmbiente, chuvaAcumulada, verificacaoIntegridade];
+        nivelAgua, temperaturaAmbiente, chuvaAcumulada, 
+        umidade, correnteBateria, correnteInput, verificacaoIntegridade];
       connection.query(query, values, (err, result) =>{
         if(err){
           res.json({message: "Erro ao consultar ao banco"});
