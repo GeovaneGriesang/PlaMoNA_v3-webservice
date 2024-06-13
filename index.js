@@ -56,7 +56,8 @@
             res.json({message: "Erro ao consultar ao banco"});
 
           }else{
-            res.json({message: result});
+            res.json({Integridade: "Assegurada", message: result});
+            
           }
         });
       }else{
