@@ -40,20 +40,28 @@
       const correnteBateria = mensagemSeparada[14];
       const correnteInput = mensagemSeparada[15];
       const verificacaoIntegridade = mensagemSeparada[16];
+      
+      
+      const testeMensagem = "testeGet"+idEquipamento+";"+ano+";"+mes+";"+dia+";"+hora+";"+minuto+";"+segundo+";"+intensidadeSinalGSM+";"+tensaoBateria+";"+tensaoModem+";"+nivelAgua+";"+temperaturaAmbiente+";"+chuvaAcumulada+";"+umidade+";"+correnteBateria+";"+correnteInput+";";
 
+      crc16 = calcCrc16(testeMensagem);
 
-      let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
-      values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, 
-        nivelAgua, temperaturaAmbiente, chuvaAcumulada, 
-        umidade, correnteBateria, correnteInput, verificacaoIntegridade];
-      connection.query(query, values, (err, result) =>{
-        if(err){
-          res.json({message: "Erro ao consultar ao banco"});
+      if(crc16==verificacaoIntegridade){
+        let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+        values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, 
+          nivelAgua, temperaturaAmbiente, chuvaAcumulada, 
+          umidade, correnteBateria, correnteInput, verificacaoIntegridade];
+        connection.query(query, values, (err, result) =>{
+          if(err){
+            res.json({message: "Erro ao consultar ao banco"});
 
-        }else{
-          res.json({message: result});
-        }
-      });
+          }else{
+            res.json({message: result});
+          }
+        });
+      }else{
+        res.json("Mensagem inválida");
+      }
     }else{
       res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
     }
@@ -88,7 +96,7 @@
       const correnteInput = mensagemSeparada[15];
       const verificacaoIntegridade = mensagemSeparada[16];
 
-      let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+      let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
       values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, 
         nivelAgua, temperaturaAmbiente, chuvaAcumulada, 
         umidade, correnteBateria, correnteInput, verificacaoIntegridade];
@@ -123,4 +131,11 @@
     console.log('Servidor iniciado com Sucesso');
  });
 
- 
+ function calcCrc16(str, crc = 0, xorout = 0) {
+  for(let i = 0, t; i < str.length; i++, crc &= 0xFFFF) {
+      t = (crc >> 8) ^ str.charCodeAt(i);
+      t ^= t >> 4;
+      crc = (crc << 8) ^ (t << 12) ^ (t << 5) ^ t;
+  }
+  return crc ^ xorout;
+}
