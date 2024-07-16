@@ -10,6 +10,27 @@
  });
 
 
+ app.get('/testeGetCriptografado:Mensagem', async (req, res) => {
+    const mensagemRecebida = req.params;
+
+    if(mensagemRecebida != null){
+      const mensagem = mensagemRecebida['Mensagem'];
+      let query = "INSERT INTO criptografada (mensagem) VALUES (?);";
+      connection.query(query, mensagem, (err, result) =>{
+        if(err){
+         res.json({message: "Erro ao consultar ao banco"});
+
+        }else{
+          res.json({message: result});
+        }
+
+      });
+    }
+
+ });
+
+
+
  //url:ipv4:3333/testeGetString
  //para usar a chave podemos separar por &, exemplo de url:ipv4:3333/testeGetKeyDeSegurança&String
  //aí usamos um split("&") para separar a key da string e testamos se a key está certa
@@ -125,9 +146,20 @@
       res.json(result);
     }
   });
-
-
  });
+
+ app.get('/consultaCriptografado', async (req, res) => {
+  let query = "SELECT * FROM criptografada ORDER BY idCriptografada DESC LIMIT 10;"
+  connection.query(query, (err, result) =>{
+    if(err){
+      res.json({message: "Erro ao consultar ao banco"});
+    }else{
+      
+      res.json(result);
+    }
+  });
+ });
+
  app.listen(port, ()=>{
     console.log('Servidor iniciado com Sucesso');
  });
