@@ -1,7 +1,7 @@
  const express = require('express');
  const app = express();
  app.use(express.json());
- const port = 3333;
+ const port = 4444;
  const connection = require('./database');
 
 
@@ -63,12 +63,16 @@
       const verificacaoIntegridade = mensagemSeparada[16];
       
       
-      const testeMensagem = "testeGet"+idEquipamento+";"+ano+";"+mes+";"+dia+";"+hora+";"+minuto+";"+segundo+";"+intensidadeSinalGSM+";"+tensaoBateria+";"+tensaoModem+";"+nivelAgua+";"+temperaturaAmbiente+";"+chuvaAcumulada+";"+umidade+";"+correnteBateria+";"+correnteInput+";";
+      const testeMensagem = "testeGet"+idEquipamento+";"+ano+";"+mes+";"+dia +";"+hora+";"+minuto+";"+segundo+";"+intensidadeSinalGSM+";"
+      +tensaoBateria+";"+tensaoModem+";"+nivelAgua+";"+temperaturaAmbiente+";"
+      +chuvaAcumulada+";"+umidade+";"+correnteBateria+";"+correnteInput+";";
 
       crc16 = calcCrc16(testeMensagem);
 
       if(crc16==verificacaoIntegridade){
-        let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+        let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, "+
+        "tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade)"+
+        " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
         values = [idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, tensaoModem, 
           nivelAgua, temperaturaAmbiente, chuvaAcumulada, 
           umidade, correnteBateria, correnteInput, verificacaoIntegridade];
