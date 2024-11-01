@@ -2,10 +2,10 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     // "process.env.VARIÁVEL" busca do arquivo .env as variáveis secretas, as quais não estão no repositório 
-    host: "databaseteste.c9yaqus04iqo.us-east-1.rds.amazonaws.com",
+    host: "database-1.cf2uukyeof3b.sa-east-1.rds.amazonaws.com",
     port: 3306,
     user: "admin",
-    password: "pla123mo123na123",
+    password: "adminPlaMoNA",
     database: "geovaneg_plamona",
   });
   
