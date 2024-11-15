@@ -78,7 +78,7 @@
           umidade, correnteBateria, correnteInput, verificacaoIntegridade];
         connection.query(query, values, (err, result) =>{
           if(err){
-            res.json({message: "Erro ao consultar ao banco"});
+            res.json({message: err});
 
           }else{
             res.json({Integridade: "Assegurada", message: result});
