@@ -69,7 +69,7 @@
 
       crc16 = calcCrc16(testeMensagem);
 
-      //if(crc16==verificacaoIntegridade){
+      if(crc16==verificacaoIntegridade){
         let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, "+
         "tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade)"+
         " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
@@ -78,16 +78,16 @@
           umidade, correnteBateria, correnteInput, verificacaoIntegridade];
         connection.query(query, values, (err, result) =>{
           if(err){
-            res.json({message: err});
+            res.json({message: "Erro ao consultar ao banco"});
 
           }else{
             res.json({Integridade: "Assegurada", message: result});
             
           }
         });
-      //}else{
-        //res.json("Mensagem inválida");
-      //}
+      }else{
+        res.json("Mensagem inválida");
+      }
     }else{
       res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
     }
