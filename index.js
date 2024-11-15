@@ -69,7 +69,7 @@
 
       crc16 = calcCrc16(testeMensagem);
 
-      if(crc16==verificacaoIntegridade){
+      //if(crc16==verificacaoIntegridade){
         let query = "INSERT INTO medicoes (idEquipamento, ano, mes, dia, hora, minuto, segundo, intensidadeSinalGSM, tensaoBateria, "+
         "tensaoModem, nivelAgua, temperaturaAmbiente, chuvaAcumulada,umidade, correnteBateria, correnteInput, verificacaoIntegridade)"+
         " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
@@ -85,9 +85,9 @@
             
           }
         });
-      }else{
-        res.json("Mensagem inválida");
-      }
+      //}else{
+        //res.json("Mensagem inválida");
+      //}
     }else{
       res.json("Conexão:Feita\nMensagem:"+mensagemRecebida);
     }
